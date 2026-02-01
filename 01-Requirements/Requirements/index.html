@@ -843,22 +843,40 @@
 <td style="text-align: center;">No</td>
 </tr>
 <tr>
-<td>Surface mounted microcontroller</td>
-<td>1 PIC or ESP</td>
-<td>8-bit PIC</td>
-<td style="text-align: center;">No</td>
-</tr>
-<tr>
-<td>Wireless Communication</td>
-<td>Able to send or receive a Wi-Fi data</td>
-<td>Send and receive Wi-Fi Data to MQTT</td>
+<td>Drone must move over rough/rocky ground</td>
+<td>Can consistently drive 5 mph over dirt and gravel</td>
+<td>Can drive 10 mph over dirt and large (5x5x5 in. average) smooth rocks</td>
 <td style="text-align: center;">Yes</td>
 </tr>
 <tr>
-<td><em>Rest are items your modules needs to support the task you are covering for the team's device.</em></td>
-<td>---</td>
-<td>---</td>
-<td style="text-align: center;"><strong>NO</strong></td>
+<td>Stable while moving</td>
+<td>MoT of #2 without flipping ove</td>
+<td>MoT of #1 without flipping over</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Human Design Interface; Respond manually with buttons</td>
+<td>Small OLED screen with pushbuttons that permits a user to view all sensor data in text; directly control the actuator; modify setpoints on all the system boards; toggle GPIO debug pins on ALL subsystems</td>
+<td>All the content in MoT and ability to tune sensors and actuators with controls on exterior of device</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>I2C or SPI</td>
+<td>Control peripheral devices such as sensors, microphones, and camera</td>
+<td>Same as MoT</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Daisy chain UART</td>
+<td>Daisy chain UART connection between all subsystems</td>
+<td>Separate UART loops for high speed communication through certain subsystems</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Distance controlled wheel speed</td>
+<td>The robot can control wheel speed and can display its speed within +-10 cm/s error, and can drive backwards.</td>
+<td>MoT and robot uses sensors to determine speed, maneuver around obstacles by turning, and knows speed within +- 1 cm/s error</td>
+<td style="text-align: center;">Yes</td>
 </tr>
 </tbody>
 </table>
