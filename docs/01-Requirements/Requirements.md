@@ -3,7 +3,7 @@ title: Module's Requirements
 ---
 
 ## Module Requirements
-The following sections document the requirements that the this module need to fulfills to .....
+My module part is to define the functional and performance requirements for the Locomotion Control of our search and rescue robot. For all movement-related functions, the drone must be able to drive smoothly over rough surfaces, maintain stability, carefully regulate speed, and blend in with the system together. We ensure that the module meets both basic functionality and complex mission goals by organizing minimum and target performance levels.
 
 | **Requirement Description** | **Measure of<br> Threshold** | **Target<br>Measure** |**Stretch<br>Requirement<br>(Y-N)**|
 |-----------------------------| ----------------- | ----------------- | :-----: |
