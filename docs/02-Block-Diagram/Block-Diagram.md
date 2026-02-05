@@ -6,19 +6,11 @@ tags:
 ---
 
 ## Overview
-This needs to be updated with a brief purpose for having the block diagram.
-Things to mention are:
-* power levels
-* sensor
-* Actuator
-* team connections
-* Power source
-* ...
+Block diagram for the locomotion control system, includes power distribution, sensing, control, and actuation. The motor driver is powered by a 12 V power source, which is then stepped down to 3.3 V to power the PIC18F47K42 microcontroller, sensors, and display.The controller gets wheel speed feedback from a Hall effect sensor, and then the data status appears on an OLED screen. The left and right gear motors are driven by the motor driver, which receives control signals from the microcontroller after processing sensor data.
+
 
 To get some initial formatting help, one can view ["here"](https://embedded-systems-design.github.io/EGR304DataSheetTemplate/Appendix/basic-markdown-examples/) some basic techniques.
 
 
-## Example Block Diagram 
-Showing an example of how to import a screenshot of the block diagram created outside of git and brought into a page.
-
-![Example of Indivial Block diagram ](individual-block-diagram.png)
+## Block Diagram 
+![Example of Indivial Block diagram ](BD.drawio.png)
