@@ -14,7 +14,7 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
 1. HG37-060-AB-00
 
-    ![]()
+    ![](motorONE.png)
 
     * $28.83/each
     * [link to product](https://www.digikey.com/short/p8jjb8t3)
@@ -22,14 +22,16 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
     | Lower cost – $28.83                       | 24V nominal - boost converter from 12V system                    |
-    | higher efficiency, longer life, better shoc|  might risk for project timeline                             |
-    |  Torque: 196 mNm                        | Cannot reach 1k handling                  | requires external feedback solution |
-    | 70 RPM                                        0 mph target without large wheels or gearing changes |
+    | durable, efficient |  might risk for project timeline                             |
+    | 70 RPM @ 24V – good torque                          | 12-week lead time |
+    | Industrial grade	                                    | Too slow for 5-10 mph |
+    | 37mm diameter |
 
 
-2. Pololu 24V 37D
 
-    ![]()
+3. Pololu 24V 37D
+
+    ![](motorTWO.png)
 
     * $44.95/each
     * [link to product](https://www.pololu.com/product/4747)
