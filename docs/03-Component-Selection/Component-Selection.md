@@ -46,7 +46,7 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
 3. DIA42B 10W
 
-    ![]()
+    ![](motorTHREE.png)
 
     * $34.24/each
     * [link to product](https://www.digikey.com/short/2r033qnc)
@@ -60,7 +60,7 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
 4. FIT0441
 
-    ![]()
+    ![](motorFOUR.png)
 
     * $19.90/each
     * [link to product](https://www.digikey.com/short/2d2cdrnw)
