@@ -4,8 +4,8 @@ title: Module's Selected Major Components
 
 ## Module's Selected Major Components
 
-### Actuator: 12V/24V DC Gear Motor with Feedback
-Requirement: 12V or 24V operation, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph, surface-mount encoder interface preferred.
+### Actuator: 12V DC Gear Motor with Feedback
+Requirement: 12V or maybe 24V operation but defnitly should be 12V, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph, surface-mount encoder interface preferred.
 
 
 For more details, review the ["Appendix - Component Selection Process - Actuator"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/Appendix/01-Componet-Selection/Component-Selection-Process/#actuator) selection.
@@ -44,4 +44,6 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
     | Helical gearbox; quiet operation | Requires level shifting for 3.3V logic |
 
 
-**Rationale:** A clock oscillator is easier ...
+Final Choice: the first option – Nidec HG37-060-AB-00
+
+**Rationale:** The Nidec 24V planetary gear motor is less expensive than the Pololu one ($44.95), so I chose it. also it is more resilient to dirt and shock than spur gears. It might possibly hit 5 mph with a few tweaks. Since this motor already has Hall effect sensors, if this one fails I might have to look for a different kind motor later. 
