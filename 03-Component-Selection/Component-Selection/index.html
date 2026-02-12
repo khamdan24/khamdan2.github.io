@@ -604,9 +604,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#actuator-12v24v-dc-gear-motor-with-feedback" class="md-nav__link">
+  <a href="#actuator-12v-dc-gear-motor-with-feedback" class="md-nav__link">
     <span class="md-ellipsis">
-      Actuator: 12V/24V DC Gear Motor with Feedback
+      Actuator: 12V DC Gear Motor with Feedback
     </span>
   </a>
   
@@ -816,9 +816,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#actuator-12v24v-dc-gear-motor-with-feedback" class="md-nav__link">
+  <a href="#actuator-12v-dc-gear-motor-with-feedback" class="md-nav__link">
     <span class="md-ellipsis">
-      Actuator: 12V/24V DC Gear Motor with Feedback
+      Actuator: 12V DC Gear Motor with Feedback
     </span>
   </a>
   
@@ -855,8 +855,8 @@
   <h1>Module's Selected Major Components</h1>
 
 <h2 id="modules-selected-major-components">Module's Selected Major Components</h2>
-<h3 id="actuator-12v24v-dc-gear-motor-with-feedback">Actuator: 12V/24V DC Gear Motor with Feedback</h3>
-<p>Requirement: 12V or 24V operation, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph, surface-mount encoder interface preferred.</p>
+<h3 id="actuator-12v-dc-gear-motor-with-feedback">Actuator: 12V DC Gear Motor with Feedback</h3>
+<p>Requirement: 12V or maybe 24V operation but defnitly should be 12V, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph, surface-mount encoder interface preferred.</p>
 <p>For more details, review the <a href="https://embedded-systems-design.github.io/EGR314DataSheetTemplate/Appendix/01-Componet-Selection/Component-Selection-Process/#actuator">"Appendix - Component Selection Process - Actuator"</a> selection.</p>
 <hr>
 <ol>
@@ -933,7 +933,8 @@
 </table>
 </li>
 </ol>
-<p><strong>Rationale:</strong> A clock oscillator is easier ...</p>
+<p>Final Choice: the first option – Nidec HG37-060-AB-00</p>
+<p><strong>Rationale:</strong> The Nidec 24V planetary gear motor is less expensive than the Pololu one ($44.95), so I chose it. also it is more resilient to dirt and shock than spur gears. It might possibly hit 5 mph with a few tweaks. Since this motor already has Hall effect sensors,&nbsp;if this one fails I might have to look for a different kind motor later. </p>
 
 
 
