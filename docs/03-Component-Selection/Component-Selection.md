@@ -21,10 +21,10 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
-    | Lower cost – $28.83                       | 24V nominal - boost converter from 12V system                    |
-    | durable, efficient |  might risk for project timeline                             |
-    | 70 RPM @ 24V – good torque                          | 12-week lead time |
-    | Industrial grade	                                    | Too slow for 5-10 mph |
+    | Lower cost – $28.83                       | Needs 24V, but we have 12V      |
+    | durable, efficient                        | too slow for 5 mph   |
+    |  good torque                              | 12 weeks to arrive |
+    | Industrial grade	                        | Might need extra parts to work |
     | 37mm diameter |
 
 
@@ -38,10 +38,10 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
-    | Same robust construction as 12V variant   | 24V nominal - convert to 12V |
-    | 64 CPR encoder                            | Higher cost than Nidec                                           |
-    | Lower current draw than 12V version at same power | 24V adds power supply complexity  |
-    | Helical gearbox; quiet operation | Requires level shifting for 3.3V logic |
+    | Strong build   | Needs 24V |
+    | has Quiet gears      | expensive then the others |
+    | 64 CPR encoder | Needs extra chip for 3.3V |
+    | Low current draw | Power supply can be harder to design |
 
 
 3. DIA42B 10W
@@ -53,10 +53,11 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
-    |  |  |
-    |  |  |
-    |  |  |
-    |  |  |
+    | Runs on 12V  | No encoder |
+    | Compact size | Only 6W power |
+    | Good for daylight work | Speed isnt listed |
+    | 14 week lead time | Cant handle heaviness |
+    | RoHS compliant | No gearbox – need external gears |
 
 4. FIT0441
 
@@ -67,11 +68,13 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
-    |  |  |
-    |  |  |
-    |  |  |
-    |  |  |
+    | Runs on 12V | Lower torque than 24V motor |
+    | Has encoder | 159 RPM |
+    | Brushless | Smaller shaft size |
+    | Low cost | Isn't an industrial grade |
+    | 9 week lead time | less durable |
+    | Integrated controller |  
 
-Final Choice: the option – 
+Final Choice: option 4 – FIT0441
 
-**Rationale:**  
+**Rationale:**  I chose option 4 because it runs on 12V, so no boost converter needed. It also has an encoder for speed control, which meets my requirement for parts. It's also cheaper and has a shorter lead time than the Nidec motor. Even though it may need extra gearing to reach 5 mph, it is easier to use and fits the project timeline better.
