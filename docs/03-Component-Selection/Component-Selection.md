@@ -59,22 +59,20 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
     | 14 week lead time | Cant handle heaviness |
     | RoHS compliant | No gearbox – need external gears |
 
-4. FIT0441
+4. PAN14EE12MD
 
     ![](motorFOUR.png)
 
-    * $19.90/each
-    * [link to product](https://www.digikey.com/short/2d2cdrnw)
+    * $5.95/each
+    * [link to product](https://www.digikey.com/short/5w7jt00v)
 
     | Pros                                      | Cons                                                             |
     | ----------------------------------------- | ---------------------------------------------------------------- |
-    | Runs on 12V | Lower torque than 24V motor |
-    | Has encoder | 159 RPM |
-    | Brushless | Smaller shaft size |
-    | Low cost | Isn't an industrial grade |
-    | 9 week lead time | less durable |
-    | Integrated controller |  
+    | 12,800 RPM high speed | Brushed motor |
+    | Cheap| No integrated controller |
+    | 12V DC operation | Smaller shaft size |
+    | Low cost | 14-week lead time |
 
-Final Choice: option 4 – FIT0441
+Final Choice: option 4 – PAN14EE12MD
 
-**Rationale:**  I chose option 4 because it runs on 12V, so no boost converter needed. It also has an encoder for speed control, which meets my requirement for parts. It's also cheaper and has a shorter lead time than the Nidec motor. Even though it may need extra gearing to reach 5 mph, it is easier to use and fits the project timeline better.
+**Rationale:**  I chose option 4 because it runs on 12V, so no need for boost converter needed. It's a lot cheaper and has a shorter lead time than the Nidec motor, it can to reach 5 mph or higher, it is easier to use and fits the project timeline better.
