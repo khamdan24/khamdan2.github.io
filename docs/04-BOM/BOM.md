@@ -6,28 +6,13 @@ tags:
 ---
 
 ## Overview
-Written context needs to added!
+The part includes, quantities, pricing, manufacturer details, and sourcing information to support procurement and assembly, this ensures traceability and repeatability for manufacturing, with all components selected for our project performance requirements and system integration needs.
 
->Pick **ONLY** one of the two examples show below. **Remove** the other example. **REMOVE notations within the remaining section about being an example.**  
-
-## Bill of Materials (Example as Table)
-
-*Table ##: An example of one approach to adding your BOM table to this section.*
+## Bill of Materials
 
 | **Part Name/Description** | **Qty** | **Unit Cost** | **Total Cost** | **Manufacture** | **Manufacturer #** | **Vendor Link** |**Datasheet Link** | **Schematic Reference Designators** |
 |:--------------------|:----|:---------------|:-----|:--------|:-----|:-----|:----|:-----|
-8-bit SIPO/SISO Shift Register, SOIC-16 package | 1 | $0.49 | $ 0.49 | NXP | 74HC595D,112 | [DigiKey](https://www.digikey.com/en/products/detail/nexperia-usa-inc/74HC595D-112/763550) | [datasheet link](https://assets.nexperia.com/documents/data-sheet/74HC_HCT595.pdf) | U1 |
-0.1 µF Ceramic Capacitor, +/-10%, X7R, 50V, 0805 package |10 | 0.2750 | $2.75 | KEMET | C0805F104K5RACTU | PRLTA 109 |n/a | C2, C4, C6, C7, C8, C9, C10, C11, C12, C16
-
-Note: Setting it up as a table is nice because it is completely viewable without scaling issues. <ins>Downside</ins> is that you have to do the math.
-
-* You could also import your BOM via a screenshot of the spreadsheet created BOM
-
-## Bill of Materials (Example as Image)
-![](BOM-Screenshot.png){style width: "2000"}
-**Figure ##:** Example Bill of Materials as a screenshot.
-
-As you can see, the text can be difficult to read without opening the image.
+Brushed DC Motor, 12VDC, 12,800 RPM, 0.453" Shaft Length, Wire Leads | 1 | $5.95 | $ 5.95 | NMB |PAN14EE12MD | [DigiKey](https://www.digikey.com/short/rcrj5vvj) | [datasheet link](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/4806/PAN14EE12MD%20data%20sheet.pdf) | M1 |
 
 ## Resouce
 
