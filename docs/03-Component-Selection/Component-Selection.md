@@ -61,7 +61,7 @@ For more details, review the ["Appendix - Component Selection Process - Actuator
 
 4. PAN14EE12MD
 
-    ![](motorFOUR.png)
+    ![](PAN14EE12MD.png)
 
     * $5.95/each
     * [link to product](https://www.digikey.com/short/5w7jt00v)
