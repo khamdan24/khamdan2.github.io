@@ -5,7 +5,7 @@ title: Module's Selected Major Components
 ## Module's Selected Major Components
 
 ### Actuator: 12V DC Gear Motor with Feedback
-Requirement: 12V operation, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph, surface-mount encoder interface preferred.
+Requirement: 12V operation, integrated speed feedback, capable of driving robot over rough/rocky ground at 5-10 mph.
 
 
 For more details, review the ["Appendix - Component Selection Process - Actuator"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/Appendix/01-Componet-Selection/Component-Selection-Process/#actuator) selection.
