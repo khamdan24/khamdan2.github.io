@@ -2,11 +2,11 @@
 My part of the project is the locomotion control. I control the movement of our project using the PIC18F27Q43 nano board to function the two control motors (IFX9201SGAUMA1) making it move by using two motors when receiving messages from the Wireless by Matthew Sanderson, who is in charge of sending commands and receiving from others. Once it receives the commond it will start reading the code and message to move.
 
 How it goes:
-* Go straight - Both motors forward
-* Go backward - Both motors reverse
-* Turn left - Left motor reverse while the Right motor goes forword
-* Turn right - Right motor reverse while the Left motor goes forword
-* Stop - Both motors stop
+- Go straight - Both motors forward
+- Go backward - Both motors reverse
+- Turn left - Left motor reverse while the Right motor goes forword
+- Turn right - Right motor reverse while the Left motor goes forword
+- Stop - Both motors stop
 
 ## Pin PIC
 | **Motor** | **CS** | **SCK** | **SI** |**SO** |
