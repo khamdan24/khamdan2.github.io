@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#pin-pic" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -749,6 +754,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -758,6 +774,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#pin-pic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin PIC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x10-left-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x10 - Left Motor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x11-right-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x11 - Right Motor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x12-motor-stop-and-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x12 - Motor stop and go
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -845,6 +914,50 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#pin-pic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin PIC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x10-left-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x10 - Left Motor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x11-right-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x11 - Right Motor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#message-type-0x12-motor-stop-and-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Type 0x12 - Motor stop and go
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -868,7 +981,169 @@
 
   <h1>API</h1>
 
-
+<p>How it goes:
+* Go straight - Both motors forward
+* Go backward - Both motors reverse
+* Turn left - Left motor reverse while the Right motor goes forword
+* Turn right - Right motor reverse while the Left motor goes forword
+* Stop - Both motors stop</p>
+<h2 id="pin-pic">Pin PIC</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Motor</strong></th>
+<th style="text-align: left;"><strong>CS</strong></th>
+<th style="text-align: left;"><strong>SCK</strong></th>
+<th style="text-align: left;"><strong>SI</strong></th>
+<th style="text-align: left;"><strong>SO</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Left Motor</td>
+<td style="text-align: left;">RC1</td>
+<td style="text-align: left;">RC0</td>
+<td style="text-align: left;">RC2</td>
+<td style="text-align: left;">RC3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Right Motor</td>
+<td style="text-align: left;">RC5</td>
+<td style="text-align: left;">RC4</td>
+<td style="text-align: left;">RC6</td>
+<td style="text-align: left;">RC7</td>
+</tr>
+</tbody>
+</table>
+<h2 id="message-type-0x10-left-motor">Message Type 0x10 - Left Motor</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Field</strong></th>
+<th style="text-align: left;"><strong>Byte 1</strong></th>
+<th style="text-align: left;"><strong>Byte 2</strong></th>
+<th style="text-align: left;"><strong>Byte 3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Variable Name</td>
+<td style="text-align: left;">message_type</td>
+<td style="text-align: left;">motor_id</td>
+<td style="text-align: left;">motor_speed</td>
+</tr>
+<tr>
+<td style="text-align: left;">Variable Type</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">int8_t</td>
+</tr>
+<tr>
+<td style="text-align: left;">Min Value</td>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">-100</td>
+</tr>
+<tr>
+<td style="text-align: left;">Max Value</td>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr>
+<td style="text-align: left;">Examlpe</td>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">75</td>
+</tr>
+</tbody>
+</table>
+<h2 id="message-type-0x11-right-motor">Message Type 0x11 - Right Motor</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Field</strong></th>
+<th style="text-align: left;"><strong>Byte 1</strong></th>
+<th style="text-align: left;"><strong>Byte 2</strong></th>
+<th style="text-align: left;"><strong>Byte 3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Variable Name</td>
+<td style="text-align: left;">message_type</td>
+<td style="text-align: left;">motor_id</td>
+<td style="text-align: left;">motor_speed</td>
+</tr>
+<tr>
+<td style="text-align: left;">Variable Type</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">int8_t</td>
+</tr>
+<tr>
+<td style="text-align: left;">Min Value</td>
+<td style="text-align: left;">0x11</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">-100</td>
+</tr>
+<tr>
+<td style="text-align: left;">Max Value</td>
+<td style="text-align: left;">0x11</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">100</td>
+</tr>
+<tr>
+<td style="text-align: left;">Examlpe</td>
+<td style="text-align: left;">0x11</td>
+<td style="text-align: left;">0x01</td>
+<td style="text-align: left;">-50</td>
+</tr>
+</tbody>
+</table>
+<h2 id="message-type-0x12-motor-stop-and-go">Message Type 0x12 - Motor stop and go</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Field</strong></th>
+<th style="text-align: left;"><strong>Byte 1</strong></th>
+<th style="text-align: left;"><strong>Byte 2</strong></th>
+<th style="text-align: left;"><strong>Byte 3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Variable Name</td>
+<td style="text-align: left;">message_type</td>
+<td style="text-align: left;">motor_id</td>
+<td style="text-align: left;">motor_speed</td>
+</tr>
+<tr>
+<td style="text-align: left;">Variable Type</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">uint8_t</td>
+<td style="text-align: left;">int8_t</td>
+</tr>
+<tr>
+<td style="text-align: left;">Min Value</td>
+<td style="text-align: left;">0x12</td>
+<td style="text-align: left;">0x03</td>
+<td style="text-align: left;">0.00</td>
+</tr>
+<tr>
+<td style="text-align: left;">Max Value</td>
+<td style="text-align: left;">0x12</td>
+<td style="text-align: left;">0x03</td>
+<td style="text-align: left;">0.01</td>
+</tr>
+<tr>
+<td style="text-align: left;">Examlpe</td>
+<td style="text-align: left;">0x12</td>
+<td style="text-align: left;">0x03</td>
+<td style="text-align: left;">0.01</td>
+</tr>
+</tbody>
+</table>
 
 
 
