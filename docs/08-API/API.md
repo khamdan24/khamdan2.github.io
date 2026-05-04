@@ -1,5 +1,5 @@
 # Message Compliance
-My part of the project is the locomotion control. I control the movement of our project using the PIC18F27Q43 nano board to function the two control motors (IFX9201SGAUMA1) making it move by using two motors when receiving messages from the Wireless by Matthew Sanderson, who is in charge of sending commands and receiving from others. Once it receives the commond it will start reading the code and message to move.
+My part of the project is the locomotion control. I control the movement of our project using the ESP32 to drive the two control motors (IFX9201SGAUMA1), making the system move by using two motors when receiving messages from the Wireless module managed by Matthew Sanderson, who is in charge of sending commands and receiving data from other modules. Once the ESP32 receives a command, it reads and processes the message to execute the appropriate movement.
 
 ## How it goes:
 - Go straight - Both motors forward
@@ -11,8 +11,8 @@ My part of the project is the locomotion control. I control the movement of our 
 ## Pin PIC
 | **Motor** | **CS** | **SCK** | **SI** |**SO** |
 |:----------|:-------|:--------|:-------|:------|
-|Left Motor |RC1|RC0|RC2|RC3|
-|Right Motor|RC5|RC4|RC6|RC7|
+|Left Motor |5|18|23|19|
+|Right Motor|20|RC4|RC6|RC7|
 
 ## Message Type 0x10 - Left Motor
 | **Field** | **Byte 1** | **Byte 2** | **Byte 3** |
@@ -37,6 +37,8 @@ My part of the project is the locomotion control. I control the movement of our 
 |:----------|:-----------|:-----------|:-----------|
 |Variable Name|message_type|motor_id  |motor_speed |
 |Variable Type|uint8_t|uint8_t|int8_t|
-|Min Value|0x12|0x03|0.00|
-|Max Value|0x12|0x03|0.01|
-|Examlpe|0x12|0x03|0.01|
+|Min Value|0x12|0x03|0|
+|Max Value|0x12|0x03|1|
+|Examlpe|0x12|0x03|1|
+
+Note: For message type 0x12, motor_speed acts as a boolean where 0 = stop and 1 = go.
