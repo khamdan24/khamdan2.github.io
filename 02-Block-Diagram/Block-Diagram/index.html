@@ -909,10 +909,9 @@
   <h1>Module's Block Diagram</h1>
 
 <h2 id="overview">Overview</h2>
-<p>Block diagram for the locomotion control system, includes power distribution, sensing, control, and actuation. The motor driver is powered by a 12 V power source, which is then stepped down to 3.3 V to power the PIC18F47K42 microcontroller and sensors. The controller gets wheel speed feedback from a Hall effect sensor, and then processes the data to adjust motor output. The left and right gear motors are driven by the motor driver, which receives control signals from the microcontroller after processing sensor data.</p>
-<p>To get some initial formatting help, one can view <a href="https://embedded-systems-design.github.io/EGR304DataSheetTemplate/Appendix/basic-markdown-examples/">"here"</a> some basic techniques.</p>
+<p>The locomotion control system is powered by a 12 V supply, which feeds the motor driver and is stepped down to 3.3 V to power the ESP32 microcontroller and onboard sensors. The ESP32 receives wheel speed feedback from a Hall effect sensor and processes these data to regulate motor output. Control signals for the left and right gear motors are sent from the motor driver, which is commanded by the ESP32 via SPI following sensor data processing. The ESP32 also handles remote motor commands received over UART from another team member, decoding messages to execute forward, reverse, or stop actions. This setup ensures coordinated and responsive motor control based on both internal feedback and external commands.</p>
 <h2 id="block-diagram">Block Diagram</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BDL.png" data-desc-position="bottom"><img alt="Example of Indivial Block diagram " src="../BDL.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../BDNEW.png" data-desc-position="bottom"><img alt="Example of Indivial Block diagram " src="../BDNEW.png"></a></p>
 
 
 
