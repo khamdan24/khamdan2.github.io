@@ -3,10 +3,10 @@ title: Module Schematic
 ---
 
 ## Overview
-The locomotion control module distributes 12V power to the motor driver and converts it to 3.3V to run the PIC18F47K42 and sensor so that the microcontroller reads the data wheel speed from a Hall effect sensor and uses this feedback to control the left and right gear motors through the IFX9201SG, allowing the the car/RC to move smoothly, maintain stability, and hopfully regulate speed on rough terrain. Power and communication are shared between modules through thr headers to enable coordinated movement and accurate distance control.
+The locomotion control module distributes 12 V power to the motor driver and converts it to 3.3 V to run the ESP32 and Hall effect sensor. The ESP32 reads wheel speed feedback from the sensor and uses this data to control the left and right gear motors through the IFX9201SG motor driver. This closed-loop approach allows the car/RC to move smoothly, maintain stability, and help regulate speed even on rough terrain. Power and communication signals are shared between modules through onboard headers, enabling coordinated movement and accurate distance control across the system.
 
 
-![schematic](schlm.png){style width:"350" height:"300;"}
+![schematic](schlm.png)
 **Figure ##:** Showing a example schematic.
 
 
