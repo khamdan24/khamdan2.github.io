@@ -16,8 +16,7 @@ for<br>
 
 ## Introduction
 
-the Locomotion Control datasheet for Team 303's search and rescue robot. This page shows the design and performance of the locomotion subsystem which will handles all movement-related functions—from rough terrain navigation to speed regulation and system integration.
-The module is built around a PIC18F47K42 microcontroller, which processes wheel speed data from a Hall effect sensor to control left and right gear motors via an IFX9201SG motor driver. Power is supplied at 12V and stepped down to 3.3V for the microcontroller and sensors. Communication with other subsystems is handled through I2C, SPI, and UART interfaces.
+The Locomotion Control datasheet for Team 303's search and rescue robot documents the design and performance of the locomotion subsystem, which handles all movement-related functions—from rough terrain navigation to speed regulation and system integration. The module is built around an ESP32 microcontroller, which processes wheel speed data from a Hall effect sensor to control left and right gear motors via an IFX9201SG motor driver. Power is supplied at 12V and stepped down to 3.3V for the ESP32 and sensors. Communication with other subsystems is handled through SPI (to control the motor driver) and UART (to receive commands from the wireless module).
 
 ### Project Summary
 
@@ -27,15 +26,17 @@ Team 303 is developing a search and rescue robot capable of traversing uneven te
 
 ### My Contribution
 
-The Locomotion Control Module, helps enabling the robot to move reliably over rough terrain while maintaining stability and speed control. My work focused on:
+* The Locomotion Control Module enables the robot to move reliably over rough terrain while maintaining stability and speed control. My work focused on:
 
-* Motor Control: Using a PIC18F47K42 microcontroller and IFX9201SG motor driver to independently control left and right gear motors based on real-time feedback.
+* Motor Control: Using an ESP32 microcontroller and IFX9201SG motor driver to independently control left and right gear motors based on real-time feedback and external commands.
 
 * Speed Sensing: Integrating a Hall effect sensor to measure wheel speed and adjust motor output accordingly.
 
-* Power Distribution: Designing the 12V to 3.3V regulation to power the microcontroller and sensors.
+* Power Distribution: Designing the 12V to 3.3V regulation to power the ESP32 and sensors.
 
-* System Communication: Implementing I2C, SPI, and daisy-chained UART to connect with other subsystems.
+* System Communication: Implementing SPI to command the motor driver and UART to receive wireless motor commands from another team member (Matthew Sanderson).
+
+* Command Handling: Parsing incoming messages (message types 0x10, 0x11, 0x12) to execute forward, reverse, turn, and stop actions.
 
 * Requirement Implementation: Meeting both threshold and target performance levels for rough terrain mobility, stability, and speed accuracy.
 
