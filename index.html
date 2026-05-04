@@ -914,27 +914,31 @@ for<br>
 <p><strong>Submission: March, 6, 2026</strong>
 </p></center><p></p>
 <h2 id="introduction">Introduction</h2>
-<p>the Locomotion Control datasheet for Team 303's search and rescue robot. This page shows the design and performance of the locomotion subsystem which will handles all movement-related functions—from rough terrain navigation to speed regulation and system integration.
-The module is built around a PIC18F47K42 microcontroller, which processes wheel speed data from a Hall effect sensor to control left and right gear motors via an IFX9201SG motor driver. Power is supplied at 12V and stepped down to 3.3V for the microcontroller and sensors. Communication with other subsystems is handled through I2C, SPI, and UART interfaces.</p>
+<p>The Locomotion Control datasheet for Team 303's search and rescue robot documents the design and performance of the locomotion subsystem, which handles all movement-related functions—from rough terrain navigation to speed regulation and system integration. The module is built around an ESP32 microcontroller, which processes wheel speed data from a Hall effect sensor to control left and right gear motors via an IFX9201SG motor driver. Power is supplied at 12V and stepped down to 3.3V for the ESP32 and sensors. Communication with other subsystems is handled through SPI (to control the motor driver) and UART (to receive commands from the wireless module).</p>
 <h3 id="project-summary">Project Summary</h3>
 <p>Team 303 is developing a search and rescue robot capable of traversing uneven terrain and supporting both autonomous and manual operation. My contribution is the Locomotion Control Module, which ensures the robot can move smoothly over rough ground, maintain stability, and accurately control wheel speed while integrating with the broader system.</p>
 <ul>
 <li>Context for our team project <a href="https://egr314-s-2026-303.github.io">team report.</a></li>
 </ul>
 <h3 id="my-contribution">My Contribution</h3>
-<p>The Locomotion Control Module, helps enabling the robot to move reliably over rough terrain while maintaining stability and speed control. My work focused on:</p>
 <ul>
 <li>
-<p>Motor Control: Using a PIC18F47K42 microcontroller and IFX9201SG motor driver to independently control left and right gear motors based on real-time feedback.</p>
+<p>The Locomotion Control Module enables the robot to move reliably over rough terrain while maintaining stability and speed control. My work focused on:</p>
+</li>
+<li>
+<p>Motor Control: Using an ESP32 microcontroller and IFX9201SG motor driver to independently control left and right gear motors based on real-time feedback and external commands.</p>
 </li>
 <li>
 <p>Speed Sensing: Integrating a Hall effect sensor to measure wheel speed and adjust motor output accordingly.</p>
 </li>
 <li>
-<p>Power Distribution: Designing the 12V to 3.3V regulation to power the microcontroller and sensors.</p>
+<p>Power Distribution: Designing the 12V to 3.3V regulation to power the ESP32 and sensors.</p>
 </li>
 <li>
-<p>System Communication: Implementing I2C, SPI, and daisy-chained UART to connect with other subsystems.</p>
+<p>System Communication: Implementing SPI to command the motor driver and UART to receive wireless motor commands from another team member (Matthew Sanderson).</p>
+</li>
+<li>
+<p>Command Handling: Parsing incoming messages (message types 0x10, 0x11, 0x12) to execute forward, reverse, turn, and stop actions.</p>
 </li>
 <li>
 <p>Requirement Implementation: Meeting both threshold and target performance levels for rough terrain mobility, stability, and speed accuracy.</p>
