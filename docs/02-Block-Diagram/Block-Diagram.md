@@ -6,10 +6,8 @@ tags:
 ---
 
 ## Overview
-Block diagram for the locomotion control system, includes power distribution, sensing, control, and actuation. The motor driver is powered by a 12 V power source, which is then stepped down to 3.3 V to power the PIC18F47K42 microcontroller and sensors. The controller gets wheel speed feedback from a Hall effect sensor, and then processes the data to adjust motor output. The left and right gear motors are driven by the motor driver, which receives control signals from the microcontroller after processing sensor data.
-
-To get some initial formatting help, one can view ["here"](https://embedded-systems-design.github.io/EGR304DataSheetTemplate/Appendix/basic-markdown-examples/) some basic techniques.
+The locomotion control system is powered by a 12 V supply, which feeds the motor driver and is stepped down to 3.3 V to power the ESP32 microcontroller and onboard sensors. The ESP32 receives wheel speed feedback from a Hall effect sensor and processes these data to regulate motor output. Control signals for the left and right gear motors are sent from the motor driver, which is commanded by the ESP32 via SPI following sensor data processing. The ESP32 also handles remote motor commands received over UART from another team member, decoding messages to execute forward, reverse, or stop actions. This setup ensures coordinated and responsive motor control based on both internal feedback and external commands.
 
 
 ## Block Diagram 
-![Example of Indivial Block diagram ](BDL.png)
+![Example of Indivial Block diagram ](BDNEW.png)
