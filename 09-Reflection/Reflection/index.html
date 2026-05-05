@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#reflection" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -883,6 +888,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reflection
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -893,6 +911,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#review-of-modules-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review of Module's Success
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#startup-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Startup Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1071,6 +1144,52 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#review-of-modules-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review of Module's Success
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#startup-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Startup Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1093,9 +1212,90 @@
   
 
 
-  <h1>Reflection</h1>
-
-
+<h1 id="reflection">Reflection</h1>
+<h2 id="review-of-modules-success">Review of Module's Success</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Meet</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goes at 5 mph</td>
+<td>Y</td>
+<td>Manged to move when pwoerd and told to</td>
+</tr>
+<tr>
+<td>Buttons for control</td>
+<td>N</td>
+<td>Only remote control</td>
+</tr>
+<tr>
+<td>SPI communication</td>
+<td>Y</td>
+<td>ESP32 sends command to motor drive</td>
+</tr>
+<tr>
+<td>UART module</td>
+<td>Y</td>
+<td>Receives commands from team</td>
+</tr>
+</tbody>
+</table>
+<p>Success: UART messages come in correctly. SPI sends the right commands (Forward(F), Reverse(R), Stop(S)). The motor runs on between 5V and 12V.</p>
+<h2 id="startup-tips">Startup Tips</h2>
+<p>Things I wish I knew before starting:</p>
+<ul>
+<li>
+<p>Keeping it simple – Get one thing working (like UART) before adding another (like SPI). I tried to do everything at once and wasted time.</p>
+</li>
+<li>
+<p>Analyzer – A cheap $10 tool shows you if your SPI or UART is actually sending data.</p>
+</li>
+<li>
+<p>Always stop the motor first – My code sends a stop command before reversing. Without that delay, you can break the motor driver.</p>
+</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<ul>
+<li>
+<p>Message format – Use the AZ[ID][CMD]YB before writing any code. Without that code, it wont't work together with your team.</p>
+</li>
+<li>
+<p>Check your power budget early – My motor draws 2A at full power. My power supply only gave 1.5A. Simple math would have saved me.</p>
+</li>
+<li>
+<p>Test each piece individually – Test SPI with just the motor driver first. Test UART with just the wireless module first. After everthing is tested put them together and see how it goes.</p>
+</li>
+<li>
+<p>Write your pin numbers – I used CS_PIN = 5, LED_PIN = 27, so you can find and change yours pins easy.</p>
+</li>
+<li>
+<p>Vibration breaks things – My motor connection got loose when it starts moving on command. Adding some tape or a built in holder.</p>
+</li>
+<li>
+<p>Ordering parts – I bent the motor shaft during testing and had no replacement. Order two of anything that moves.</p>
+</li>
+</ul>
+<h2 id="recommendations">Recommendations</h2>
+<ul>
+<li>
+<p>Get an analyzer before the class – It is the most useful tool for debugging communication problems. Learn how to use it early.</p>
+</li>
+<li>
+<p>Order extra parts – If some of your item's break all of the sudden, you might have to order and wait for new ones to arrive. Always order at least two of your part.</p>
+</li>
+<li>
+<p>Start your PCB early – My 5-day PCB order took 12 days.</p>
+</li>
+<li>
+<p>Test as you build – Write a tiny script to blink an LED. Then one to send SPI. Then one to read UART. Put them together at the end. This makes the debugging part easy.</p>
+</li>
+</ul>
+<p>Get your message format approved before coding – The teaching team made me change my protocol twice. Get sign-off first so you do not have to rewrite code.</p>
 
 
 
