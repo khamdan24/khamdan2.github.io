@@ -12,4 +12,4 @@ The locomotion control module distributes 12 V power to the motor driver and c
 
 ## Resouces
 
-The schematic as a PDF download is available [*here*](sch.pdf), and the Zip folder of the project [*here*](dummyZip.zip).
+The schematic as a PDF download is available [*here*](sch.pdf), and the Zip folder of the project [*here*](sch.zip).
