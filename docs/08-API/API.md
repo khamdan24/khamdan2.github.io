@@ -43,7 +43,7 @@ My part of the project is the locomotion control. I control the movement of our 
 
 Note: For message type 0x12, motor_speed acts as a boolean where 0 = stop and 1 = go.
 
-# In the Project 
+## In the Project 
 The locomotion control module exposes the following command interface over UART (9600 baud, 8N1). All messages follow the format: `AZ[ID][CMD]YB`
 
 | Command Byte | Action | Description |
