@@ -34,6 +34,14 @@ Things I wish I knew before starting:
 
 - Ordering parts – I bent the motor shaft during testing and had no replacement. Order two of anything that moves.
 
+- Start simple – Get the motor to spin forward first. Worry about speed control and sensors later. I tried to do everything at once and got stuck for days.
+
+- Add an LED – I put an LED that turns on when a command is active. This helped me know the code was running even when the motor was not moving.
+
+- Always stop before going – Going straight from forward to reverse can break the motor driver. Add a small delay and a stop command in between, or make it go forward, stop, and then reverse.
+
+- Print on console – Use print() to show what your UART is receiving. If you cannot see the data, you cannot debug it.
+
 ## Recommendations 
 
 - Get an analyzer before the class – It is the most useful tool for debugging communication problems. Learn how to use it early.
