@@ -16,6 +16,4 @@ The Problem: On my current PCB, the copper traces go everywhere like confused sn
 - Signals: Rmy SPI signals (SCK, SI, SO, CS) are a little spread out on the board. In V2.0, I would keep them bundled together so they run next to each other. This makes the board look cleaner and simple.
 
 ## Summary
-A good PCB should look neat, not like a plate of spaghetti. Version 2.0 would have straight, short traces, clean power routing, and no unnecessary layer switching. This would make the board more reliable and easier to debug if something breaks.
-
-
+The PCB should look neat, not all scrambled up and accidentally. In my Version 2.0 it would have clean path, short traces, clean power routing, and no unnecessary layer switching. This would make the board more reliable and easier to debug if something breaks.
