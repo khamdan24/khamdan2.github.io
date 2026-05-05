@@ -1037,6 +1037,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#demonstration-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demonstration Video
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1153,6 +1162,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#demonstration-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Demonstration Video
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1179,14 +1197,194 @@
 <h1 id="resources">Resources</h1>
 <h2 id="final-code">Final Code</h2>
 <ul>
-<li><strong>GitHub Repository:</strong> [Link to your final ESP32 code .zip file]</li>
-<li><strong>Main File:</strong> <code>main.py</code> - Contains UART message parsing, SPI motor control, and main event loop</li>
+<li><strong>ESP32:</strong> [Link to your final ESP32 code .zip file]</li>
+<li><strong>Main code:</strong> <code>main.py</code> - Contains UART message parsing, SPI motor control, and main event loop
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">SPI</span><span class="p">,</span> <span class="n">UART</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">uasyncio</span> <span class="k">as</span> <span class="nn">asyncio</span>
+
+<span class="c1"># IFX9201 SPI commands</span>
+<span class="n">CMD_FORWARD</span> <span class="o">=</span> <span class="mh">0xEF</span>
+<span class="n">CMD_REVERSE</span> <span class="o">=</span> <span class="mh">0xED</span>
+<span class="n">CMD_STOP</span>    <span class="o">=</span> <span class="mh">0xE3</span>
+
+<span class="c1"># Pin definitions</span>
+<span class="n">CS_PIN</span>  <span class="o">=</span> <span class="mi">5</span>
+<span class="n">DIR_PIN</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">DIS_PIN</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">LED_PIN</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># SPI pins (ESP32 default SPI2)</span>
+<span class="n">SCK_PIN</span>  <span class="o">=</span> <span class="mi">18</span>
+<span class="n">MOSI_PIN</span> <span class="o">=</span> <span class="mi">23</span>
+<span class="n">MISO_PIN</span> <span class="o">=</span> <span class="mi">19</span>
+
+<span class="c1"># UART settings (matching Matt's setup)</span>
+<span class="n">UART_BAUD</span> <span class="o">=</span> <span class="mi">9600</span>
+<span class="n">UART_TX_PIN</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">UART_RX_PIN</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="c1"># Team IDs (matching Matt's protocol)</span>
+<span class="n">team</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">'A'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'M'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'L'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'V'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'K'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'C'</span><span class="p">]</span>
+<span class="n">my_id</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'M'</span>  <span class="c1"># This is Matt</span>
+<span class="n">broadcast</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'X'</span>
+<span class="n">MAX_MESSAGE_LEN</span> <span class="o">=</span> <span class="mi">64</span>
+
+
+<span class="k">def</span> <span class="nf">spi_send_command</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">cs_pin</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Send SPI command to IFX9201"""</span>
+    <span class="n">cs_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="c1"># Select device (active low)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">spi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">([</span><span class="n">command</span><span class="p">]))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">cs_pin</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>          <span class="c1"># Deselect device</span>
+
+
+<span class="k">def</span> <span class="nf">motor_forward</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Move motor forward"""</span>
+    <span class="k">global</span> <span class="n">led</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">spi_send_command</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">CMD_FORWARD</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Motor: Forward"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">motor_reverse</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Move motor in reverse"""</span>
+    <span class="k">global</span> <span class="n">led</span>
+    <span class="n">spi_send_command</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">CMD_STOP</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>  <span class="c1"># safety delay</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">spi_send_command</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">CMD_REVERSE</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Motor: Reverse"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">motor_stop</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Stop motor"""</span>
+    <span class="k">global</span> <span class="n">led</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">spi_send_command</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">CMD_STOP</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Motor: Stop"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">process_uart_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Process incoming UART message from Matt"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Message format: b'AZ[ID][command]...YB'</span>
+        <span class="c1"># Where first byte is 'A', second is 'Z', third is sender ID, fourth is command</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="c1"># Check if message starts with 'AZ' and ends with 'YB'</span>
+            <span class="k">if</span> <span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'AZ'</span> <span class="ow">and</span> <span class="n">message</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'YB'</span><span class="p">:</span>
+                <span class="c1"># Extract sender ID (3rd byte) and command (4th byte)</span>
+                <span class="n">sender_id</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+                <span class="n">command_byte</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+
+                <span class="c1"># Check if sender is Matt (M)</span>
+                <span class="k">if</span> <span class="n">sender_id</span> <span class="o">==</span> <span class="n">my_id</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Received command from Matt (M): </span><span class="si">{</span><span class="n">command_byte</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+                    <span class="c1"># Process motor commands</span>
+                    <span class="k">if</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'F'</span> <span class="ow">or</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'f'</span><span class="p">:</span>
+                        <span class="n">motor_forward</span><span class="p">()</span>
+                    <span class="k">elif</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'R'</span> <span class="ow">or</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'r'</span><span class="p">:</span>
+                        <span class="n">motor_reverse</span><span class="p">()</span>
+                    <span class="k">elif</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'S'</span> <span class="ow">or</span> <span class="n">command_byte</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">'s'</span><span class="p">:</span>
+                        <span class="n">motor_stop</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown command: </span><span class="si">{</span><span class="n">command_byte</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Message from </span><span class="si">{</span><span class="n">sender_id</span><span class="si">}</span><span class="s2"> (ignoring)"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Invalid message format"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Message too short: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes"</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error processing message: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">read_uart</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Read and parse UART messages"""</span>
+    <span class="k">if</span> <span class="n">uart</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="c1"># Read available bytes</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Raw UART: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">process_uart_message</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="c1"># Initialize global objects</span>
+<span class="n">spi</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">direction</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">disable</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">led</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">uart</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Initialize all hardware"""</span>
+    <span class="k">global</span> <span class="n">spi</span><span class="p">,</span> <span class="n">cs</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">disable</span><span class="p">,</span> <span class="n">led</span><span class="p">,</span> <span class="n">uart</span>
+
+    <span class="c1"># Initialize pins</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">CS_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">DIR_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">disable</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">DIS_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Initialize SPI</span>
+    <span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span>
+        <span class="mi">2</span><span class="p">,</span>
+        <span class="n">baudrate</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span>
+        <span class="n">polarity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">phase</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">firstbit</span><span class="o">=</span><span class="n">SPI</span><span class="o">.</span><span class="n">MSB</span><span class="p">,</span>
+        <span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">SCK_PIN</span><span class="p">),</span>
+        <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">MOSI_PIN</span><span class="p">),</span>
+        <span class="n">miso</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">MISO_PIN</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Initialize UART for receiving from Matt</span>
+    <span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="n">UART_BAUD</span><span class="p">,</span> <span class="n">tx</span><span class="o">=</span><span class="n">UART_TX_PIN</span><span class="p">,</span> <span class="n">rx</span><span class="o">=</span><span class="n">UART_RX_PIN</span><span class="p">)</span>
+    <span class="n">uart</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">UART_BAUD</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">parity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Motor Control with UART Receiver"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"My ID: </span><span class="si">{</span><span class="n">my_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Waiting for commands from Matt (M)..."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Commands: F (Forward), R (Reverse), S (Stop)"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">setup</span><span class="p">()</span>
+
+    <span class="c1"># Main loop - checks for UART messages</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">read_uart</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Small delay to prevent CPU hogging</span>
+
+
+<span class="c1"># Run program</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">Program stopped"</span><span class="p">)</span>
+        <span class="c1"># Clean shutdown - stop motor</span>
+        <span class="k">if</span> <span class="n">spi</span> <span class="ow">and</span> <span class="n">cs</span><span class="p">:</span>
+            <span class="n">motor_stop</span><span class="p">()</span>
+            <span class="n">cs</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <ul>
-<li>[Final Schematic PDF - Link to your file]</li>
-<li>[Final PCB Gerber Files .zip - Link to your file]</li>
+<li>[Final Schematic]</li>
+<li>[Final PCB Gerber Files]</li>
 </ul>
+<h2 id="demonstration-video">Demonstration Video</h2>
+<p><a href="https://youtu.be/VkRqs9AWPHQ?si=H0qLijxY4l5cSQjT">Motor video part</a></p>
 
 
 
