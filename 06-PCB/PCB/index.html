@@ -26,7 +26,7 @@
 
     
       
-        <title>PCB - EGR 314 Khalid Hamdan Data Sheet</title>
+        <title>Module Schematic - EGR 314 Khalid Hamdan Data Sheet</title>
       
     
     
@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#overview-pcb" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -120,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PCB
+              Module Schematic
             
           </span>
         </div>
@@ -732,15 +737,70 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Module Schematic
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    PCB
+    Module Schematic
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview PCB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -874,6 +934,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#overview-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview PCB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -895,7 +990,30 @@
   
 
 
-  <h1>PCB</h1>
+  <h1>Module Schematic</h1>
+
+<h2 id="overview-pcb">Overview PCB</h2>
+<p>The locomotion control PCB is designed to efficiently distribute power and house the core control components for for our project search and rescue robot: SABLE. The board features two distinct power zones to ensure clean and stable operation of all subsystems.</p>
+<h2 id="power-distribution">Power Distribution</h2>
+<ul>
+<li>
+<p>12V Zone: A dedicated copper pour area supplies 12V directly to the IFX9201SG motor driver, which drives the left and right gear motors. This high-voltage zone handles the primary actuation power for locomotion.</p>
+</li>
+<li>
+<p>3.3V Zone: A separate copper pour area provides 3.3V to the ESP32 microcontroller and all motor control logic. This low-voltage zone ensures sensitive components receive clean, regulated power for reliable operation.</p>
+</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../PCB1.png" data-desc-position="bottom"><img alt="schematic" src="../PCB1.png"></a>
+*<em>Figure 1:</em></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../PCB2.png" data-desc-position="bottom"><img alt="schematic" src="../PCB2.png"></a>
+*<em>Figure 2:</em></p>
+<h2 id="3d">3D</h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../1.png" data-desc-position="bottom"><img alt="schematic" src="../1.png"></a>
+*<em>Figure 3:</em></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2.png" data-desc-position="bottom"><img alt="schematic" src="../2.png"></a>
+*<em>Figure 4:</em></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../3.png" data-desc-position="bottom"><img alt="schematic" src="../3.png"></a>
+*<em>Figure 5:</em></p>
 
 
 
@@ -903,7 +1021,8 @@
 
 
 
-
+  
+  
 
 
 
