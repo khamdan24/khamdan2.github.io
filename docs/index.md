@@ -39,7 +39,3 @@ Team 303 is developing a search and rescue robot capable of traversing uneven te
 * Command Handling: Parsing incoming messages (message types 0x10, 0x11, 0x12) to execute forward, reverse, turn, and stop actions.
 
 * Requirement Implementation: Meeting both threshold and target performance levels for rough terrain mobility, stability, and speed accuracy.
-
-To review the details listed of the material used to construct the subsection, you can review it in the ["BOM"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-BOM/BOM/) section of the datasheet.
-
->Continue for all the remaining/missing sections.
