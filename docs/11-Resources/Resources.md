@@ -1,7 +1,7 @@
 # Resources
 
 ## Final Code
-- **ESP32:** [Link to your final ESP32 code .zip file]
+- **ESP32:** [code.zip file](main.zip)
 - **Main code:** `main.py` - Contains UART message parsing, SPI motor control, and main event loop
 ```python
 from machine import Pin, SPI, UART
@@ -184,8 +184,8 @@ if __name__ == "__main__":
 ```
 
 ## Documentation
-- [Final Schematic]
-- [Final PCB Gerber Files]
+- [Final Schematic](egr314.zip)
+- [Final PCB Gerber Files](gerpers.zip)
 
 ## Demonstration Video
 [Motor video part](https://youtu.be/VkRqs9AWPHQ?si=H0qLijxY4l5cSQjT)
