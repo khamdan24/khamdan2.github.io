@@ -738,9 +738,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resouce" class="md-nav__link">
+  <a href="#power-budget" class="md-nav__link">
     <span class="md-ellipsis">
-      Resouce
+      Power Budget
     </span>
   </a>
   
@@ -1091,9 +1091,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resouce" class="md-nav__link">
+  <a href="#power-budget" class="md-nav__link">
     <span class="md-ellipsis">
-      Resouce
+      Power Budget
     </span>
   </a>
   
@@ -1121,8 +1121,6 @@
   
   
 
-
-  <h1>Module Bill of Materials</h1>
 
 <h2 id="overview">Overview</h2>
 <p>The part includes, quantities, pricing, manufacturer details, and sourcing information to support procurement and assembly, this ensures traceability and repeatability for manufacturing, with all components selected for our project performance requirements and system integration needs.</p>
@@ -1155,8 +1153,71 @@
 </tr>
 </tbody>
 </table>
-<h2 id="resouce">Resouce</h2>
-<p>The Bill of Material as a PDF download is available <a href="../PDF_For_BOM_EXAMPLE.pdf"><em>here</em></a>.</p>
+<h1 id="power-budget">Power Budget</h1>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>Voltage (V)</th>
+<th>Current per Unit (mA)</th>
+<th>Total Current (mA)</th>
+<th>Total Power (mW)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ESP32</td>
+<td>1</td>
+<td>3.3</td>
+<td>80 (active)</td>
+<td>80</td>
+<td>264</td>
+</tr>
+<tr>
+<td>IFX9201SG</td>
+<td>1</td>
+<td>12</td>
+<td>5</td>
+<td>5</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Motor's</td>
+<td>1</td>
+<td>12</td>
+<td>2000</td>
+<td>2000</td>
+<td>24000</td>
+</tr>
+<tr>
+<td>Voltage regulator (12V→3.3V efficiency 85%)</td>
+<td>1</td>
+<td>12</td>
+<td>31 (input)</td>
+<td>31</td>
+<td>372</td>
+</tr>
+<tr>
+<td>Motor running</td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>~2126 mA</strong></td>
+<td><strong>~25.5 W</strong></td>
+</tr>
+<tr>
+<td>Motor idle</td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>~116 mA</strong></td>
+<td><strong>~1.4 W</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The 12V power supply must provide at least 2.1A continuously to handle both motors. The 3.3V regulator supplies around 80mA to the ESP32. Using a switching regulator with around 85% efficiency, the 12V input current for the logic side is approximately 31mA.</p>
+<p><strong>Conclusion:</strong> A 12V, 5A power supply is recommended for the final robot to provide margin for stall currents and both motors simultaneously.</p>
 
 
 
