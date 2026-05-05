@@ -48,8 +48,8 @@ Things I wish I knew before starting:
 
 - Order extra parts – If some of your item's break all of the sudden, you might have to order and wait for new ones to arrive. Always order at least two of your part.
 
-- Start your PCB early – My 5-day PCB order took 12 days.
+- Start your PCB early – My 5-day PCB order took 12 days due to some errors.
 
 - Test as you build – Write a tiny script to blink an LED. Then one to send SPI. Then one to read UART. Put them together at the end. This makes the debugging part easy.
 
-Get your message format approved before coding – The teaching team made me change my protocol twice. Get sign-off first so you do not have to rewrite code.
+- message format approved before coding – The team made me change my protocol twice. Get sign-off first so you do not have to rewrite code.
