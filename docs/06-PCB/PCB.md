@@ -11,18 +11,18 @@ The locomotion control PCB is designed to efficiently distribute power and house
 - 3.3V Zone: A separate copper pour area provides 3.3V to the ESP32 microcontroller and all motor control logic. This low-voltage zone ensures sensitive components receive clean, regulated power for reliable operation.
 
 
-![schematic](PCB1.png )
-**Figure 1:*
+![PCB](PCB1.png)
+**PCB with copper and GND** Figure 1:
 
-![schematic](PCB2.png)
-**Figure 2:*
+![PCB](PCB2.png)
+**PCB without** Figure 2:
 
 ## 3D
 ![schematic](1.png)
-**Figure 3:*
+**front** Figure 3:
 
-![schematic](2.png)
-**Figure 4:*
+![PCB](2.png)
+**back** Figure 4:
 
-![schematic](3.png)
-**Figure 5:*
+![PCB](3.png)
+**full** Figure 5:
