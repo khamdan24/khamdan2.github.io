@@ -4,7 +4,7 @@
 
 | Requirement | Meet |Status |
 |-------------|--------|--------|
-|Goes at 5 mph|Y|Manged to move when pwoerd and told to|
+|Goes at 5 mph|Y|Manged to move when powerd and told to|
 |Buttons for control|N|Only remote control|
 |SPI communication|Y|ESP32 sends command to motor drive|
 |UART module|Y|Receives commands from team|
