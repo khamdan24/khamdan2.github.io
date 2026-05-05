@@ -42,3 +42,27 @@ My part of the project is the locomotion control. I control the movement of our 
 |Examlpe|0x12|0x03|1|
 
 Note: For message type 0x12, motor_speed acts as a boolean where 0 = stop and 1 = go.
+
+# In the Project 
+The locomotion control module exposes the following command interface over UART (9600 baud, 8N1). All messages follow the format: `AZ[ID][CMD]YB`
+
+| Command Byte | Action | Description |
+|--------------|--------|-------------|
+| `F` or `f`   | Forward  | Drives motor forward via SPI command 0xEF |
+| `R` or `r`   | Reverse | Drives motor reverse via SPI command 0xED |
+| `S` or `s`   | Stop | Stops motor via SPI command 0xE3 |
+
+**UART Configuration:**
+- Baud Rate: 9600
+- TX Pin: GPIO 17
+- RX Pin: GPIO 16
+- Data Bits: 8
+- Parity: None
+- Stop Bits: 1
+
+**SPI Configuration (to IFX9201):**
+- Bus: SPI2
+- Baud Rate: 1 MHz
+- Polarity: 0, Phase: 1
+- CS Pin: GPIO 5
+- SCK: GPIO 18, MOSI: GPIO 23, MISO: GPIO 19
