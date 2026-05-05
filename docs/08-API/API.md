@@ -8,11 +8,11 @@ My part of the project is the locomotion control. I control the movement of our 
 - Turn right - Right motor reverse while the Left motor goes forword
 - Stop - Both motors stop
 
-## Pin PIC
+## ESP32
 | **Motor** | **CS** | **SCK** | **SI** |**SO** |
 |:----------|:-------|:--------|:-------|:------|
-|Left Motor |5|18|23|19|
-|Right Motor|20|RC4|RC6|RC7|
+|Left Motor |5|18|21|17|
+|Right Motor|4|18|21|17|
 
 ## Message Type 0x10 - Left Motor
 | **Field** | **Byte 1** | **Byte 2** | **Byte 3** |
