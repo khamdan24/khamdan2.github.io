@@ -26,7 +26,7 @@
 
     
       
-        <title>Version - EGR 314 Khalid Hamdan Data Sheet</title>
+        <title>Hardware V2.0 - EGR 314 Khalid Hamdan Data Sheet</title>
       
     
     
@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#hardware-v20" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -120,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Version
+              Hardware V2.0
             
           </span>
         </div>
@@ -929,16 +934,66 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Hardware V2.0
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Version
+    Hardware V2.0
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#what-i-would-improve" class="md-nav__link">
+    <span class="md-ellipsis">
+      What I Would Improve:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1071,6 +1126,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#what-i-would-improve" class="md-nav__link">
+    <span class="md-ellipsis">
+      What I Would Improve:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1093,9 +1176,27 @@
   
 
 
-  <h1>Version</h1>
-
-
+<h1 id="hardware-v20">Hardware V2.0</h1>
+<p>If I made a Version 2.0 of my PCB, the biggest change would be cleaning up the copper traces so they are not a mess.</p>
+<p>Fix the Trace Routing
+The Problem: On my current PCB, the copper traces go everywhere like confused snakes. They zigzag around, take long paths, and some traces go under the board when they did not need to. This makes the board look ugly and can cause electrical noise problems.</p>
+<h2 id="what-i-would-improve">What I Would Improve:</h2>
+<ul>
+<li>
+<p>Shorter paths: some traces take the long way around to get from one pin to another. In V2.0, I would route each trace in the straightest line possible. If a trace needs to go from pin 5 to pin 10, it should go there directly, not wander around other components first.</p>
+</li>
+<li>
+<p>Keep traces on one side: My current board has traces jumping to the bottom side when they could have stayed on top. In V2.0, I would plan better so most traces stay on the top layer. Only switch layers when there is no other choice.</p>
+</li>
+<li>
+<p>Better power and ground: My 12V and 3.3V traces are too thin and take long paths. In V2.0, I would use wider traces for power (at least 1mm wide) and make them as short as possible. Ground would be a solid copper pour, not thin traces.</p>
+</li>
+<li>
+<p>Signals: Rmy SPI signals (SCK, SI, SO, CS) are a little spread out on the board. In V2.0, I would keep them bundled together so they run next to each other. This makes the board look cleaner and simple.</p>
+</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>A good PCB should look neat, not like a plate of spaghetti. Version 2.0 would have straight, short traces, clean power routing, and no unnecessary layer switching. This would make the board more reliable and easier to debug if something breaks.</p>
 
 
 
